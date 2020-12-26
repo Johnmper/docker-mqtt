@@ -14,8 +14,8 @@ services:
       default:
         aliases:
           - broker
-  mqtt_pub:
-    build: "./mqtt_pub"
+  mqtt_python_pub:
+    build: "./mqtt_python_pub"
     environment: 
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=UTF-8
@@ -27,10 +27,10 @@ services:
           - pub
     volumes:
       - type: bind
-        source: ./mqtt_pub
+        source: ./mqtt_python_pub
         target: /home
-  mqtt_sub:
-    build: "./mqtt_sub"
+  mqtt_python_sub:
+    build: "./mqtt_python_sub"
     environment: 
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=UTF-8
@@ -42,5 +42,5 @@ services:
           - sub
     volumes:
       - type: bind
-        source: ./mqtt_sub
+        source: ./mqtt_python_sub
         target: /home

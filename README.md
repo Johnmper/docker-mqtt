@@ -9,10 +9,10 @@ docker-compose build
 docker-compose run
 # OR
 docker-compose up --build
-# OR Open 3 terminals and
+# OR Open 3 terminals and manually run each instance
 docker-compose up mqtt_broker
-docker-compose up mqtt_pub
-docker-compose up mqtt_sub
+docker-compose up mqtt_python_pub
+docker-compose up mqtt_python_sub
 ```
 
 ## Debug Docker
