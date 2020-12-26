@@ -1,0 +1,46 @@
+version: "3.9"
+services:
+  mqtt_broker:
+    image: erlio/docker-vernemq:1.8.0
+    restart: always
+    environment:
+      DOCKER_VERNEMQ_LOG__CONSOLE: "off"
+      DOCKER_VERNEMQ_ALLOW_ANONYMOUS: "on"
+    ports:
+      - 8884:8884
+    expose:
+      - '8884'
+    networks:
+      default:
+        aliases:
+          - broker
+  mqtt_pub:
+    build: "./mqtt_pub"
+    environment: 
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=UTF-8
+    expose:
+      - '8884'
+    networks:
+      default:
+        aliases:
+          - pub
+    volumes:
+      - type: bind
+        source: ./mqtt_pub
+        target: /home
+  mqtt_sub:
+    build: "./mqtt_sub"
+    environment: 
+      - PYTHONUNBUFFERED=1
+      - PYTHONIOENCODING=UTF-8
+    expose:
+      - '8884'
+    networks:
+      default:
+        aliases:
+          - sub
+    volumes:
+      - type: bind
+        source: ./mqtt_sub
+        target: /home
