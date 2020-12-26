@@ -10,37 +10,25 @@ services:
       - 8884:8884
     expose:
       - '8884'
-    networks:
-      default:
-        aliases:
-          - broker
   mqtt_python_pub:
-    build: "./mqtt_python_pub"
+    build: "./mqtt_pub"
     environment: 
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=UTF-8
     expose:
       - '8884'
-    networks:
-      default:
-        aliases:
-          - pub
     volumes:
       - type: bind
-        source: ./mqtt_python_pub
+        source: ./mqtt_pub
         target: /home
   mqtt_python_sub:
-    build: "./mqtt_python_sub"
+    build: "./mqtt_sub"
     environment: 
       - PYTHONUNBUFFERED=1
       - PYTHONIOENCODING=UTF-8
     expose:
       - '8884'
-    networks:
-      default:
-        aliases:
-          - sub
     volumes:
       - type: bind
-        source: ./mqtt_python_sub
+        source: ./mqtt_sub
         target: /home

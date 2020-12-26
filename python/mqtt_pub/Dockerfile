@@ -4,7 +4,7 @@ LABEL maintainer="GOMES PEREIRA João Miguel"
 RUN apt update
 
 # Core dependencies. 
-RUN apt install -y build-essential cmake  pkg-config apt-utils yasm software-properties-common
+RUN apt install -y build-essential cmake pkg-config apt-utils yasm software-properties-common
 RUN apt install -y git wget unzip 
 
 RUN pip3 install --upgrade pip && pip3 --no-cache-dir install numpy paho-mqtt
